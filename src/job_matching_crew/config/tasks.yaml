@@ -1,0 +1,43 @@
+cv_analysis_task:
+  description: >
+    Analyze the CV document at {cv_path} and extract:
+    - Professional summary\n
+    - Technical skills\n
+    - Education history\n
+    - Work experience\n
+    - Certifications\n
+    Present results in structured JSON format.
+  expected_output: >
+    Structured JSON containing all CV elements
+  agent: cv_reader_agent
+
+job_parsing_task:
+  description: >
+    Analyze job postings at {job_urls} and extract: 
+    - Job title\n
+    - Required skills\n
+    - Key responsibilities\n
+    - Education requirements\n
+    - Experience requirements\n
+    Present results in structured JSON format.
+  expected_output: >
+    Structured JSON containing all job details
+  agent: job_parser_agent 
+
+matching_task:
+  description: > 
+    Compare CV data with job descriptions:
+    1. Perform skill-to-requirement matching\n
+    2. Compare experience levels\n
+    3. Match education qualifications\n
+    4. Calculate similarity score (0-100%) for each job\n
+    5. Rank jobs by match score\n
+    6. Provide improvement suggestions for low-scoring areas
+  expected_output: >
+    Detailed report with:\n
+    - Match percentages for each job\n
+    - Ranking of best opportunities\n
+    - Gap analysis\n
+    - Improvement suggestions
+  agent: matcher_agent
+    
